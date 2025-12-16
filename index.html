@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joanne G. Niñeza - Portfolio</title>
+    <style>
+        /* GLOBAL STYLES & RESET */
+        :root {
+            --primary-color: #f7f0f5;
+            --secondary-color: #020701;
+            --background-color: #9cb6b2;
+            --text-color: #212529;
+            --white: #7c3a80f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            overflow-x: hidden;
+
+            /* Animated gradient background */
+            background: linear-gradient(
+                -45deg,
+                #903993,
+                #203a43,
+                #a83ccf,
+                #b8096c,
+                #d5ebd7
+    );
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+                body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Base dark glow */
+        body::before {
+            background: radial-gradient(
+                circle at 20% 20%,
+                rgba(172, 13, 132, 0.25),
+                transparent 60%
+            ),
+            radial-gradient(
+                circle at 80% 30%,
+                rgba(120, 75, 160, 0.25),
+                transparent 60%
+            ),
+            radial-gradient(
+                circle at 50% 80%,
+                rgba(43, 134, 197, 0.2),
+                transparent 60%
+            );
+            animation: glowMove 20s linear infinite;
+        }
+
+        /* Lightning shimmer layer */
+        body::after {
+            background: linear-gradient(
+                120deg,
+                transparent 40%,
+                rgba(255, 255, 255, 0.06),
+                transparent 60%
+            );
+            animation: lightningFlash 6s ease-in-out infinite;
+            opacity: 0.4;
+        }
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        @keyframes glowMove {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-10%, -10%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes lightningFlash {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.6; }
+        }
+        section,
+        header,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+        section {
+            background: rgba(243, 252, 250, 0.85)
+            border-radius: 20px;
+            margin: 40px auto;
+        }
+
+        .hero {
+            background: transparent;
+        }
+        /* === Animated background for project cards === */
+        .project-card {
+            background: linear-gradient(
+                -45deg,
+                #892727,
+                #e174c4,
+                #159e80,
+                #7cc747
+            );
+            background-size: 400% 400%;
+            animation: projectBG 8s ease infinite;
+        }
+
+        /* Animation */
+        @keyframes projectBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }   
+
+
+
+
+
+        /* NAVIGATION BAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .navbar a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80vh;
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInLeft 1.2s ease-out;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            animation: fadeInLeft 1.4s ease-out;
+        }
+
+        #view-projects-btn {
+            background-color: var(--primary-color);
+            color: rgb(14, 2, 2);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            animation: fadeInLeft 1.6s ease-out;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+        }
+
+        #view-projects-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        #view-projects-btn:hover::before {
+            left: 100%;
+        }
+
+        #view-projects-btn:hover {
+            background-color: #8a0340;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 3, 64, 0.4);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: fadeInRight 1.2s ease-out;
+        }
+
+        .hero-image img {
+            max-width: 400px;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            animation: float 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            border: 5px solid white;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(172, 13, 132, 0.4);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--secondary-color);
+            position: relative;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+            animation: expandWidth 1s ease-out 0.5s both;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 80px;
+            }
+        }
+
+        /* PROJECTS GRID - EQUAL SIZES */
+        .projects-grid {
+            text-align: center;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+    background: #0b0b12;
+    position: relative;
+    overflow: hidden;
+}
+/* Lightning animation layer */
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        120deg,
+        transparent 40%,
+        rgba(172, 13, 132, 0.8),
+        rgba(221, 7, 157, 0.9),
+        rgba(199, 9, 91, 0.532)2),
+        transparent 60%
+    );
+    animation: lightningMove 3s linear infinite;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+/* Random lightning flash */
+.project-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    animation: lightningFlash 5s infinite;
+    z-index: 0;
+}
+@keyframes lightningMove {
+    0% {
+        transform: translateX(-100%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(360deg);
+    }
+}
+
+@keyframes lightningFlash {
+    0%, 95%, 100% {
+        opacity: 0;
+    }
+    96% {
+        opacity: 0.5;
+    }
+    97% {
+        opacity: 0.1;
+    }
+}
+.project-card img,
+.project-content {
+    position: relative;
+    z-index: 1;
+}
+
+.project-card h3,
+.project-card p,
+.details-link {
+    color: #ffffff;
+}
+.project-card:hover {
+    box-shadow:
+        0 0 25px rgba(172, 13, 132, 0.8),
+        0 0 45px rgba(174, 74, 127, 0.6);
+}
+
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(172, 13, 132, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .project-card h3 {
+            margin: 0 0 15px 0;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
+            font-size: 1.5rem;
+        }
+
+        .project-card:hover h3 {
+            color: var(--primary-color);
+        }
+
+        .project-card p {
+            margin: 0 0 20px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            color: #666;
+            line-height: 1.6;
+            flex-grow: 1;
+            min-height: 60px;
+        }
+
+        .details-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            align-self: flex-start;
+        }
+
+        .details-link::after {
+            content: ' →';
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .details-link:hover {
+            transform: translateX(5px);
+            color: var(--secondary-color);
+        }
+
+        .details-link:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* ABOUT SECTION */
+        .about-me {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-me p {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .about-me h3 {
+            text-align: center;
+            margin: 40px 0 20px;
+            color: var(--secondary-color);
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skills-list li {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            animation: fadeInScale 0.6s ease-out;
+            animation-fill-mode: both;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skills-list li:nth-child(1) { animation-delay: 0.1s; }
+        .skills-list li:nth-child(2) { animation-delay: 0.2s; }
+        .skills-list li:nth-child(3) { animation-delay: 0.3s; }
+
+        .skills-list li:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(172, 13, 132, 0.4);
+            background-color: var(--secondary-color);
+        }
+
+        /* CONTACT FORM */
+        .contact-form form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            font-family: inherit;
+        }
+
+        .contact-form input:nth-child(1) { animation-delay: 0.1s; }
+        .contact-form input:nth-child(2) { animation-delay: 0.2s; }
+        .contact-form textarea { animation-delay: 0.3s; }
+
+        .contact-form input:focus, 
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(178, 34, 142, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .contact-form button[type="submit"] {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+        }
+
+        .contact-form button[type="submit"]::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(10, 135, 117, 0.2)
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .contact-form button[type="submit"]:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            background-color: #7a5269;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(26, 30, 34, 0.4);
+        }
+        #contact-me-btn {
+    background: linear-gradient(
+        135deg,
+        #ac0d84,
+        #dd079d,
+        #b8096c
+    );
+    color: #ffffff;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow:
+        0 0 15px rgba(172, 13, 132, 0.6),
+        0 0 30px rgba(221, 7, 157, 0.4);
+}
+
+/* Lightning sweep */
+#contact-me-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.7),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+/* Glow pulse */
+#contact-me-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Hover effects */
+#contact-me-btn:hover::before {
+    left: 100%;
+}
+
+#contact-me-btn:hover::after {
+    opacity: 1;
+}
+
+#contact-me-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.7),
+        0 0 50px rgba(172, 13, 132, 0.8);
+}
+
+/* Click effect */
+#contact-me-btn:active {
+    transform: scale(0.95);
+}
+
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 1rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero-image {
+                order: -1;
+                margin-bottom: 30px;
+            }
+
+            .hero-image img {
+                max-width: 300px;
+                height: 300px;
+            }
+
+            .navbar nav {
+                display: none;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">PORTFOLIO</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#projects">Project</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Joanne G. Niñeza</h1>
+            <p>I am a student of Inabanga College of Arts and Sciences </p>
+            <button id="contact-me-btn">Contact Me</button>
+        </div>
+        <div class="hero-image">
+            <!-- REPLACE THIS: Add your profile photo here -->
+            <!-- Example: <img src="images/my-photo.jpg" alt="Joanne G. Niñeza"> -->
+            <img src="profile.jpg" alt="Joanne G. Niñeza">    
+         </div>
+    </section>
+
+    <section id="projects" class="projects-grid">
+        <h2>Featured Projects</h2>
+        
+        <div class="projects-container">
+            <div class="project-card">
+                <!-- REPLACE THIS: Add your project image -->
+                <!-- Example: <img src="images/html-css-project.jpg" alt="HTML/CSS Project"> -->
+                <img src="https://via.placeholder.com/350x250/ac0d84/ffffff?text=HTML+CSS+Project" alt="HTML/CSS Project">
+                <div class="project-content">
+                    <h3>HTML/CSS</h3>
+                    <p>Implementing responsive, aesthetic styling.</p>
+                    <a href="#" class="details-link">View Case Study</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <!-- REPLACE THIS: Add your project image -->
+                <!-- Example: <img src="images/arduino-project.jpg" alt="Arduino Project"> -->
+                <img src="https://via.placeholder.com/350x250/354034/ffffff?text=Arduino+Project" alt="Arduino Project">
+                <div class="project-content">
+                    <h3>Arduino</h3>
+                    <p>Champion of the Best Arduino Project: Automated Water Level With SMS alert via GSM Module.</p>
+                    <a href="#" class="details-link">View Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-me">
+        <h2>About Me</h2>
+        <p>I am a passionate developer with 2 years of experience building modern, user-focused web solutions. My goal is to create efficient and impactful technology that solves real-world problems.</p>
+        
+
+    </section>
+
+    <section id="contact" class="contact-form">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Joanne G. Niñeza. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+     // Contact Me button (Home → Nav Contact)
+document.getElementById('contact-me-btn').addEventListener('click', function () {
+    document.getElementById('contact').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+});
+
+
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✨ Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
